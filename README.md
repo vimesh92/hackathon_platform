@@ -1,2 +1,2 @@
 # hackathon_platform
- Hackathon Platform for Conduction Machine Learning Hackathons
+ Hackathon Platform for Conducting Machine Learning Hackathons
