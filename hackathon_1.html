@@ -1,0 +1,147 @@
+<html>
+
+<head>
+
+<style>
+.leader_board {
+	margin-right: 100px;
+	margin-left: 290px;
+	margin-top:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 40px;
+	float:center;
+	width:76%;
+	height: auto;
+}
+
+.problem_tab{
+	background:#7293f7;
+	padding-left: 6px;
+	float:left;
+	border: 1px black;
+	color:white;
+	width:25%;
+}
+
+.logout{
+
+	border: none;
+	color: Black;
+	height: 35px;
+	width: 50px;
+	cursor: pointer;
+	float:right;
+	position:inline;
+}
+
+.hack_part{
+border: none;
+	color: Black;
+	height: 35px;
+	width: 100px;
+	cursor: pointer;
+}
+</style>
+
+<title>Problem</title>
+
+<link rel="stylesheet" href="./css/style_sheet.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+</head>
+
+<body class= 'body'>
+<div class= 'problem_one'>
+
+
+
+<form action = "{{ url_for('logout') }}" method='post'>
+<button class='logout' style="align:right" >Logout</button> 
+</form>
+<form action = "/main" method='post'>
+<button class='logout' style="align:right" >Home</button> 
+</form>
+
+<div class='Problem_tab'>
+<form action="/hackathon_list" method="post">
+
+ {% for row in hack_id_1 %}
+ <h2>{{row.hackathon_title}}</h2>
+ 
+ <h3>{{row.hackathon_problem}}</h3>
+ 
+ <h4><a href={{row.datasets}}>Datasets </a></h4>
+
+ 
+ {% endfor %}
+ 
+<br>
+<br> 
+
+</form>
+<form method="post" action="/upload" enctype="multipart/form-data" >
+    <dl>
+		<p>
+			<input type="file" name="file" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+
+
+<p class='pred'>Your score is {{ result_acc }} </p>
+
+</form>
+</div>
+<div class= 'leader_board'>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+    <meta charset="UTF-8">
+<form action="/leader_board" method="post" >
+<button class='hack_part' >Leader Board</button> 
+
+ {% if result %}
+ 
+
+   <table id="leader_board" style="width:75%"><tbody><tr>
+        <th>User Name</th>
+        <th>Accuracy Score</th>
+        <th>Number of Submissions</th>
+	<th>TimeStamp</th>
+   {% for row in result %}
+
+    </tr><tr>
+        <td> {{ row.user_name}}</td>
+        <td> {{ row.Accuracy_Score}}</td>
+        <td> {{ row.Submissions }}</td>
+	<td> {{ row.Time_Stamp }}</td>
+   
+    {% endfor %}
+    {% endif %}
+
+ </tr></tbody></table>
+
+ 
+ </form>
+ 
+ </div>
+</body>
+
+</html>

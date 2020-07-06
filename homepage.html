@@ -1,0 +1,122 @@
+<html>
+
+<head>
+
+<title>Vimesh's Hackathon Platform</title>
+
+<link rel="stylesheet" href="./css/style_sheet.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+</head>
+
+<body class= 'body'>
+<div class= 'problem_one'>
+
+<h2> Welcome to the hackathon platform </h2>
+
+
+<form action = "{{ url_for('logout') }}" method='post'>
+<button class='logout' style="align:right" >Logout</button> 
+</form>
+</form>
+
+<form action="/hackathon_list" method="post">
+
+<br><br>
+
+<button class='hack_part' >Refresh List</button>
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.list {
+	margin-right: 100px;
+	margin-left: 290px;
+	margin-top:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 40px;
+	float:center;
+	width:76%;
+	height: auto;
+}
+
+.problem_tab{
+	background:#7293f7;
+	padding-left: 6px;
+	float:left;
+	border: 1px black;
+	color:white;
+	width:25%;
+}
+
+.logout{
+
+	border: none;
+	color: Black;
+	height: 35px;
+	width: 50px;
+	cursor: pointer;
+	float:right;
+	position:inline;
+}
+
+.hack_part{
+border: none;
+	color: Black;
+	height: 35px;
+	width: 100px;
+	cursor: pointer;
+}
+</style>
+
+<br>
+<br>
+<div class='list'>
+   {% if result %}
+    
+   <table id="list" style="width:75%"><tbody><tr>
+        <th>Title</th>
+        <th>Problem Statement</th>
+		<th>Number of Participants</th>
+		<th>Created</th>
+		<th>Datasets</th>
+		<th>Participate</th>
+		
+   {% for row in result %}
+   
+    </tr><tr>
+        <td> {{ row.hackathon_title}}</td>
+        <td> {{ row.hackathon_problem }}</td>
+		<td> {{ row.num_participants }}</td>
+		<td> {{ row.date_created }}</td>
+		<td><a href=''>Link</a></td>
+		<form action="{{ url_for('hackathon_1') }}" method="post">
+		<td><input type="submit" value={{row.hack_id}} name='hack_id' id='hack_id'></td></form>
+   
+    {% endfor %}
+    {% endif %}
+
+ </tr></tbody></table>
+ </div>
+ </form>
+
+
+
+</div>
+
+</body>
+
+</html>

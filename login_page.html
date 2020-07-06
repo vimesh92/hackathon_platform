@@ -1,0 +1,121 @@
+<html>
+
+<style>
+
+.login_pane{
+	background: #59565c;
+	margin-right: 100px;
+	margin-left: 890px;
+	margin-bottom: 150px;
+	margin-top:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 40px;
+}
+
+.login_button{
+	border: none;
+	color: Black;
+	position: inline;
+	height: 35px;
+	width: 260px;
+	cursor: pointer;
+}
+.placeholder_{
+	border: none;
+	height: 35px;
+	width: 200px;
+}
+
+h1{
+	margin-right: 100px;
+	margin-left: 980px;
+	margin-top: 150px;
+	margin-bottom: 0px;
+    font-size: 35px;
+    color:white;
+}
+
+.problem_one{
+	background:#7293f7;
+	margin-top: 0px;
+	margin-bottom: 2px;
+	padding-left:400;
+	border: 2px;
+	position: float;
+	color:white;
+	
+}
+
+
+</style>
+
+<head>
+
+<title>Vimesh's Hackathon Platform</title>
+
+<link rel="stylesheet" href="./css/style_sheet.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+
+</head>
+
+<body class= 'body'>
+<div class= 'problem_one'>
+
+<h2> Welcome to the hackathon platform </h2>
+
+
+</div>
+<h1>Login</h1>
+<div class= 'login_pane'>
+<form action="{{ url_for('login') }}" method="post">
+				<label for="username">
+					<i class="fas fa-user"></i>
+				</label>
+				<input class='placeholder_' type="text" name="user_name" placeholder="Username" id="user_name" required>
+				<br>
+				<label for="password">
+					<i class="fas fa-lock"></i>
+				</label>
+				<input class='placeholder_' type="password" name="user_password" placeholder="password" id="user_password" required>
+				<br>
+				<div class="msg">{{ msg }}</div>
+				<br>	
+				<input class='login_button' type="submit" value="Login">
+			</form>
+</div>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

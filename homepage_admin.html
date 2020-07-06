@@ -1,0 +1,186 @@
+<html>
+
+<head>
+
+<title>Vimesh's Hackathon Platform</title>
+
+<link rel="stylesheet" href="./css/style_sheet.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+.login_pane{
+	background: #59565c;
+	margin-right: 100px;
+	margin-left: 890px;
+	margin-bottom: 150px;
+	margin-top:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 40px;
+}
+
+.login_button{
+	border: none;
+	color: Black;
+	position: inline;
+	height: 35px;
+	width: 260px;
+	cursor: pointer;
+}
+.placeholder_{
+	border: none;
+	height: 35px;
+	width: 200px;
+}
+
+h1{
+	margin-right: 100px;
+	margin-left: 980px;
+	margin-top: 150px;
+	margin-bottom: 0px;
+    font-size: 35px;
+    color:white;
+}
+
+.leader_board {
+	margin-right: 100px;
+	margin-left: 290px;
+	margin-top:0px;
+	padding-top:10px;
+	padding-bottom: 10px;
+	padding-left:10px;
+	padding-right:10px;
+	font-size: 40px;
+	float:center;
+	width:76%;
+	height: auto;
+}
+
+.problem_tab{
+	background:#7293f7;
+	padding-left: 6px;
+	float:left;
+	border: 1px black;
+	color:white;
+	width:25%;
+}
+
+.logout{
+
+	border: none;
+	color: Black;
+	height: 35px;
+	width: 50px;
+	cursor: pointer;
+	float:right;
+	position:inline;
+}
+
+.hack_part{
+border: none;
+	color: Black;
+	height: 35px;
+	width: 100px;
+	cursor: pointer;
+}
+
+
+</style>
+</head>
+
+<body class= 'body'>
+
+
+<form action = "{{ url_for('logout') }}" method='post'>
+<button class='logout' align='right' >Logout</button> 
+</form>
+<div class= 'problem_tab'>
+<h2> Admin: Create and Edit Hackathon </h2>
+
+
+<form  action="{{url_for('create')}}" method="post">
+    <div class="form-group">
+        <label for="title">Hackathon Title</label> <br>
+        <input type="text" name="title"
+               placeholder="Post title" class="form-control"
+               value="{{ request.form['title'] }}" required></input>
+    </div>
+
+    <div class="form-group">
+        <label for="content">Problem Statement</label> <br>
+        <textarea name="content" placeholder="Post content"
+                  class="form-control" required>{{ request.form['content'] }}</textarea>
+    </div>
+    <div class="form-group">
+	<br>
+	    <label for="answer_key">Answer Key</label> <br>
+		
+		<textarea name="answer_key" placeholder="Answer Key Link"
+                  class="form-control" required>{{ request.form['answer_key'] }}</textarea>
+				  <br>
+		
+		<label for="Datasets">Datasets</label> <br>
+          <textarea name="Datasets" placeholder="Enter Link to Datasets"
+                  class="form-control" required>{{ request.form['Datasets'] }}</textarea><br><br>
+	
+	
+        <button type="submit" class="hack_part">Save</button>
+    </div>
+</form>
+
+</div>
+<form action="/hackathon_list_admin" method="post">
+
+<div class= 'leader_board'>
+
+<button class='hack_part' >Refresh List</button>
+
+   {% if result %}
+    
+   <table id="list" style="width:75%"><tbody><tr>
+        <th>Hack ID</th>
+        <th>Title</th>
+        <th>Problem Statement</th>
+		<th>Number of Participants</th>
+		<th>Created</th>
+		<th>Datasets</th>
+		<th>Delete</th>
+   {% for row in result %}
+   
+    </tr><tr>
+        <td> {{ row.hack_id}}</td>
+        <td> {{ row.hackathon_title}}</td>
+        <td> {{ row.hackathon_problem }}</td>
+		<td> {{ row.num_participants }}</td>
+		<td> {{ row.date_created }}</td>
+		<td><a href=''>Link</a></td>
+		<form action = "{{url_for('delete_hackathon')}}" method="post">
+		<td><input type="submit" value={{row.hack_id}} name='hack_id' id='hack_id'> </td></form>
+</td>
+   
+    {% endfor %}
+    {% endif %}
+
+ </tr></tbody></table>
+ </form>
+</div>
+
+</body>
+
+</html>
